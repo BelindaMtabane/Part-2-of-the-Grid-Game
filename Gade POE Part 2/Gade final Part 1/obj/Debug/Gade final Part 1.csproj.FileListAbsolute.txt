@@ -1,0 +1,30 @@
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\belin\Downloads\Jet_Belinda-GADE-POE--53d829792bf412b4cf3419c69c209a987d5854be\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\belin\Videos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
