@@ -1,0 +1,10 @@
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\lab_services_student\source\repos\Gade final Part 1\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
