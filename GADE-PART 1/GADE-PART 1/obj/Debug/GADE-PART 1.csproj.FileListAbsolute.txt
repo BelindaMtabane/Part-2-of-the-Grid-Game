@@ -1,0 +1,10 @@
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE-PART 1.csproj.AssemblyReference.cache
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE_PART_1.Form1.resources
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE_PART_1.Properties.Resources.resources
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE-PART 1.csproj.GenerateResource.cache
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE-PART 1.csproj.CoreCompileInputs.cache
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\bin\Debug\GADE-PART 1.exe.config
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\bin\Debug\GADE-PART 1.exe
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\bin\Debug\GADE-PART 1.pdb
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE-PART 1.exe
+C:\Users\lab_services_student\source\repos\GADE-PART 1\GADE-PART 1\obj\Debug\GADE-PART 1.pdb

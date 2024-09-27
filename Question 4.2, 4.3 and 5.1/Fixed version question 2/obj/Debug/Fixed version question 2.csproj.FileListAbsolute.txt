@@ -1,0 +1,10 @@
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed version question 2.csproj.AssemblyReference.cache
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed_version_question_2.Form1.resources
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed_version_question_2.Properties.Resources.resources
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed version question 2.csproj.GenerateResource.cache
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed version question 2.csproj.CoreCompileInputs.cache
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\bin\Debug\Fixed version question 2.exe.config
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\bin\Debug\Fixed version question 2.exe
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\bin\Debug\Fixed version question 2.pdb
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed version question 2.exe
+C:\Users\jetta\OneDrive\Desktop\Fixed version question 2\Fixed version question 2\obj\Debug\Fixed version question 2.pdb
