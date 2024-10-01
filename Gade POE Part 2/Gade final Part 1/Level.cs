@@ -12,6 +12,7 @@ namespace Gade_final_Part_1
         private Tile[,] _tiles;
         private ExitTile _exit;
         private HeroTile _hero;
+        private EnemyTile[] _enemyTiles;
 
         //Initialize properties to expose the fields
         public int Width { get; set; }//2D array of type Tile
@@ -19,9 +20,35 @@ namespace Gade_final_Part_1
         public Tile[,] Tiles { get { return _tiles; } }//stores height
         public HeroTile HeroTile { get { return _hero; } }//stores hero
         public ExitTile ExitTile { get { return _exit; } }
+        public EnemyTile[] enemyTiles { get { return _enemyTiles; } } //exposes the enemyTile array
+
         private Random random = new Random();
         //constructor  which holds integer paramters for height and width
-        public Level(int width, int height, HeroTile hero = null, ExitTile exitTile = null)
+        public Tile CreateTile(TileType tileType, Position position)
+        {
+            int enemyIndex = 0;
+            switch (tileType)
+            {
+                case TileType.Empty:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new EmptyTile(position);
+                    break;
+                case TileType.Wall:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new WallTile(position);
+                    break;
+                case TileType.Exit:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new ExitTile(position);
+                    break;
+                case TileType.Hero:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new HeroTile(position);
+                    break;
+                case TileType.Enemy:
+                    _enemyTiles[enemyIndex] = new GruntTile(position, this);
+                    break;
+
+            }
+            return _tiles[position.XCoordinate, position.YCoordinate];
+        }
+        public Level(int width, int height, HeroTile hero = null, ExitTile exitTile = null, int numEnemies = 4)
         {
             // Set the width and height of the level
             Width = width;
@@ -58,9 +85,21 @@ namespace Gade_final_Part_1
 
             // Assign the hero to the level's hero property
             _hero = hero;
+
+            if (numEnemies > 0)
+            {
+                //_enemyTiles = new EnemyTile[numEnemies];
+                for (int i = 0; i < numEnemies; i++)
+                {
+                    Position enemyPosition = GetRandomEmptyPosition();
+                    _enemyTiles[i] = (EnemyTile)CreateTile(TileType.Enemy, enemyPosition);
+                }
+            }
+            else
+            {
+                _enemyTiles = new EnemyTile[0];
+            }
         }
-
-
         //sets all the tiles in the 2D Tile array to EmptyTiles using the CreateTiule method.
         public void InitialiseTiles()
         {
@@ -93,27 +132,10 @@ namespace Gade_final_Part_1
             Empty, // single value named Empty
             Wall,   // More types will be added here as we extend the Level class according to assignment brief
             Exit,
-            Hero
+            Hero,
+            Enemy
         }// single value named Empty
-        public Tile CreateTile(TileType tileType, Position position)
-        {
-            switch (tileType)
-            {
-                case TileType.Empty:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new EmptyTile(position);
-                    break;
-                case TileType.Wall:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new WallTile(position);
-                    break;
-                    case TileType.Exit:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new ExitTile(position);
-                    break;
-                case TileType.Hero:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new HeroTile(position);
-                    break;
-            }
-            return _tiles[position.XCoordinate, position.YCoordinate];
-        }
+       
         private Tile CreateTile(TileType tileType, int x, int y)
         {
             Position position = new Position(x, y);
@@ -168,12 +190,10 @@ namespace Gade_final_Part_1
 
         public void SwopTiles(Tile tileOne, Tile tileTwo)
         {
-
             if (tileOne == null || tileTwo == null)
             {
                 throw new ArgumentNullException(nameof(tileOne), "Tiles cannot be null.");
             }
-
             // Capture original coordinates
             var (tileOneX, tileOneY) = (tileOne.XCoordinate, tileOne.YCoordinate);
             var (tileTwoX, tileTwoY) = (tileTwo.XCoordinate, tileTwo.YCoordinate);
