@@ -41,7 +41,7 @@
             // btnUp
             // 
             this.btnUp.Location = new System.Drawing.Point(700, 114);
-            this.btnUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(125, 28);
             this.btnUp.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnRight
             // 
             this.btnRight.Location = new System.Drawing.Point(821, 154);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRight.Margin = new System.Windows.Forms.Padding(4);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(100, 28);
             this.btnRight.TabIndex = 1;
@@ -63,7 +63,7 @@
             // btnLeft
             // 
             this.btnLeft.Location = new System.Drawing.Point(601, 154);
-            this.btnLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLeft.Margin = new System.Windows.Forms.Padding(4);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(100, 28);
             this.btnLeft.TabIndex = 2;
@@ -74,7 +74,7 @@
             // btnDown
             // 
             this.btnDown.Location = new System.Drawing.Point(700, 196);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(125, 28);
             this.btnDown.TabIndex = 3;
@@ -140,9 +140,10 @@
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnUp);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Dot Grid Game";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

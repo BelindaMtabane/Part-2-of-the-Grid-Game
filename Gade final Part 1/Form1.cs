@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Gade_final_Part_1.Level;
 
 namespace Gade_final_Part_1
 {
     public partial class Form1 : Form
     {
         private GameEngine engine;
+        private bool isAttackMode = false;
+
 
         public Form1()
         {
@@ -43,23 +46,53 @@ namespace Gade_final_Part_1
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            MoveHero(Level.Direction.Up);
+            if (isAttackMode)
+            {
+                AttackInDirection(Level.Direction.Up);
+            }
+            else
+            {
+                MoveHero(Level.Direction.Up);
+            }
+
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            MoveHero(Level.Direction.Right);
+            
+            if (isAttackMode)
+            {
+                AttackInDirection(Level.Direction.Right);
+            }
+            else
+            {
+                MoveHero(Level.Direction.Right);
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            MoveHero(Level.Direction.Left);
+            if (isAttackMode)
+            {
+                AttackInDirection(Level.Direction.Left);
+            }
+            else
+            {
+                MoveHero(Level.Direction.Left);
+            }
 
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            MoveHero(Level.Direction.Down);
+            if (isAttackMode)
+            {
+                AttackInDirection(Level.Direction.Down);
+            }
+            else
+            {
+                MoveHero(Level.Direction.Down);
+            }
 
         }
         private void MoveHero(Level.Direction direction)
@@ -76,5 +109,21 @@ namespace Gade_final_Part_1
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void AttackInDirection(Level.Direction direction)
+        {
+            if (engine != null)
+            {
+                engine.TrigggerAttack(direction);
+                UpdateDisplay();
+            }
+        }
+
+
+
     }
 }
