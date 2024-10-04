@@ -36,12 +36,11 @@ namespace Gade_final_Part_1
             this.lvlNumbers = gameLvls;
             int height = randomValue.Next(MIN_SIZE, MAX_SIZE);
             int width = randomValue.Next(MIN_SIZE, MAX_SIZE);
-            int numEnemies = currentLevelValue;
-            //currentLevelValue = numEnemies;
+            int numEnemies = currentLevelValue;//Set the new number of levels as the number of enemies
+
             //Create an object for the current level field
             currentLvl = new Level(width, height, numEnemies);
             totalLvls = 1;
-            //currentLevelValue = int numEnemies;//Set the new number of levels as the number of enemies
 
         }
         public override string ToString()
@@ -163,17 +162,17 @@ namespace Gade_final_Part_1
             lvlNumbers++; // Increase the current level of the character by one
             HeroTile heroTile = currentLvl.HeroTile; // Store the HeroTile from the current level
 
+            currentLevelValue++;//Increment the level and the number of enemies
             int newLvlWidth = randomValue.Next(MIN_SIZE, MAX_SIZE); // Generate the new randomized width
             int newLvlHeight = randomValue.Next(MIN_SIZE, MAX_SIZE); // Generate the new randomized height
 
             // Display temporary level and hero tile info
             Console.WriteLine($"Temporary Level: {temporaryLevel}, HeroTile: {heroTile.ToString()}");
             // Increment the number of enemies with each level
-            int numLvlEnemies = lvlNumbers;
+            int numLvlEnemies = currentLevelValue;
             Console.WriteLine($"the number of enemies are: {numLvlEnemies}");
             // Create a new Level and assign it to currentLvl
             currentLvl = new Level(newLvlWidth, newLvlHeight, numLvlEnemies, heroTile, null);
-            currentLevelValue++;//Increment the level and the number of enemies
             // Log current object state
             Console.WriteLine(this.ToString());
         }
@@ -264,6 +263,31 @@ namespace Gade_final_Part_1
                 // If a valid target is not found, proceed with a message
                 Console.WriteLine("No target in that direction.");
                 return false; // Attack was unsuccessful
+            }
+        }
+        public void TrigggerAttack(Level.Direction direction)
+        {
+            HeroTile heroTile = currentLvl.HeroTile;
+            bool attackResult = HeroAttack(direction, heroTile);
+
+            if(attackResult == true)
+            {
+                EnemiesAttack();
+            }
+        }
+        private void EnemiesAttack()
+        {
+            foreach(EnemyTile enemyTile in currentLvl.enemyTiles)
+            {
+                if(gruntTile.Display == 'X')
+                {
+                    var targets = gruntTile.IdentifyTargets();
+
+                    foreach (var target in targets)
+                    {
+                        enemyTile.Attack(target);
+                    }
+                }
             }
         }
     }
