@@ -69,7 +69,7 @@ namespace Gade_final_Part_1
             //Declare the array that will open 4 space to store values
             charVision = new Tile[4];
         }
-        public void UpdateVision(Level level)
+        public Tile[] UpdateVision(Level level)
         {
             //2D Array from the level class to represent the template of the game grid
             var tiles = level.Tiles;
@@ -85,6 +85,8 @@ namespace Gade_final_Part_1
 
             if (XCoordinate - 1 >= 0)
                 charVision[3] = tiles[XCoordinate - 1, YCoordinate]; // Tile to the left (index 3) of the character
+
+            return charVision;
         }
         //Method that the character will take damage
         public int TakeDamage(int charDamage)
@@ -108,5 +110,11 @@ namespace Gade_final_Part_1
         }
 
         public bool IsDead => _hitPoints <= 0;
+
+        public void Heal(int restoredHp = 10)
+        { 
+            _hitPoints += restoredHp;
+        
+        }
     }
 }

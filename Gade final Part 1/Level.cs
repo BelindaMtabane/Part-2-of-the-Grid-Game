@@ -13,6 +13,8 @@ namespace Gade_final_Part_1
         private ExitTile _exit;
         private HeroTile _hero;
         private EnemyTile[] _enemyTiles;
+        private Tile _updateVision;
+
 
         //Initialize properties to expose the fields
         public int Width { get; set; }//2D array of type Tile
@@ -24,31 +26,8 @@ namespace Gade_final_Part_1
 
         private Random random = new Random();
         //constructor  which holds integer paramters for height and width
-        public Tile CreateTile(TileType tileType, Position position)
-        {
-            int enemyIndex = 0;
-            switch (tileType)
-            {
-                case TileType.Empty:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new EmptyTile(position);
-                    break;
-                case TileType.Wall:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new WallTile(position);
-                    break;
-                case TileType.Exit:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new ExitTile(position);
-                    break;
-                case TileType.Hero:
-                    _tiles[position.XCoordinate, position.YCoordinate] = new HeroTile(position);
-                    break;
-                case TileType.Enemy:
-                    _enemyTiles[enemyIndex] = new GruntTile(position, this);
-                    break;
 
-            }
-            return _tiles[position.XCoordinate, position.YCoordinate];
-        }
-        public Level(int width, int height, HeroTile hero = null, ExitTile exitTile = null, int numEnemies = 4)
+        public Level(int width, int height, int numEnemies, HeroTile hero = null, ExitTile exitTile = null)
         {
             // Set the width and height of the level
             Width = width;
@@ -64,10 +43,11 @@ namespace Gade_final_Part_1
             InitialiseTiles();
 
             Position randomPosition = GetRandomEmptyPosition();
+
             // If no hero tile was passed in, create a new hero at a random empty position
             if (hero == null)
             {
-                
+
                 hero = (HeroTile)CreateTile(TileType.Hero, randomPosition);
             }
             else
@@ -88,11 +68,13 @@ namespace Gade_final_Part_1
 
             if (numEnemies > 0)
             {
+                _enemyTiles = new EnemyTile[numEnemies];
                 //_enemyTiles = new EnemyTile[numEnemies];
                 for (int i = 0; i < numEnemies; i++)
                 {
                     Position enemyPosition = GetRandomEmptyPosition();
                     _enemyTiles[i] = (EnemyTile)CreateTile(TileType.Enemy, enemyPosition);
+                    _tiles[enemyPosition.XCoordinate, enemyPosition.YCoordinate] = _enemyTiles[i];
                 }
             }
             else
@@ -126,6 +108,28 @@ namespace Gade_final_Part_1
                 }
             }
         }
+        public Tile CreateTile(TileType tileType, Position position)
+        {
+            switch (tileType)
+            {
+                case TileType.Empty:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new EmptyTile(position);
+                    break;
+                case TileType.Wall:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new WallTile(position);
+                    break;
+                case TileType.Exit:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new ExitTile(position);
+                    break;
+                case TileType.Hero:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new HeroTile(position);
+                    break;
+                case TileType.Enemy:
+                    return new GruntTile(position);
+
+            }
+            return _tiles[position.XCoordinate, position.YCoordinate];
+        }
         //enum named TileType
         public enum TileType
         {
@@ -135,7 +139,7 @@ namespace Gade_final_Part_1
             Hero,
             Enemy
         }// single value named Empty
-       
+
         private Tile CreateTile(TileType tileType, int x, int y)
         {
             Position position = new Position(x, y);
@@ -190,9 +194,13 @@ namespace Gade_final_Part_1
 
         public void SwopTiles(Tile tileOne, Tile tileTwo)
         {
-            if (tileOne == null || tileTwo == null)
+            if (tileOne == null)
             {
                 throw new ArgumentNullException(nameof(tileOne), "Tiles cannot be null.");
+            }
+            if (tileTwo == null)
+            {
+                throw new ArgumentNullException(nameof(tileTwo), "Tile two cannot be null.");
             }
             // Capture original coordinates
             var (tileOneX, tileOneY) = (tileOne.XCoordinate, tileOne.YCoordinate);
@@ -202,8 +210,12 @@ namespace Gade_final_Part_1
             _tiles[tileOneX, tileOneY] = tileTwo;
             _tiles[tileTwoX, tileTwoY] = tileOne;
 
-            // Swap the position values of the tiles
-            (tileOne.Position, tileTwo.Position) = (tileTwo.Position, tileOne.Position);
+            // Temporarily store tileOne's position to swap
+            Position tempPosition = tileOne.Position;
+
+            // Swap the positions
+            tileOne.Position = tileTwo.Position;
+            tileTwo.Position = tempPosition;
 
             // Update the coordinates of the tiles to reflect their new positions
             tileOne.XCoordinate = tileTwoX;
@@ -219,6 +231,15 @@ namespace Gade_final_Part_1
             Down = 2,
             Left = 3,
             None = 4
+        }
+        public void UpdateVision(Level level)
+        {
+            _hero.UpdateVision(level);
+
+            for (int i = 0; i < _enemyTiles.Length; i++)
+            {
+                _enemyTiles[i].UpdateVision(level);
+            }
         }
     }
 }

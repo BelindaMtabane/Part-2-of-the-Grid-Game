@@ -10,12 +10,13 @@ namespace Gade_final_Part_1
     {
         private Random random = new Random();
         private Level level;
-        private Tile _updateVision;
+        private HeroTile hero;
+        private CharacterTile updateVision;
         private EnemyTile[] _enemies; //stores enemy tiles
 
-        public GruntTile(Position position, Level level) : base(position, 10, 1)
+        public GruntTile(Position position) : base(position, 10, 1)
         {
-            this.level = level;
+
         }
         public override char Display
         {
@@ -26,6 +27,7 @@ namespace Gade_final_Part_1
         }
         public override bool GetMove(out Tile destination)
         {
+            //loops through the four directions 
             destination = null;
             List<Tile> emptyTiles = new List<Tile>();
 
@@ -34,12 +36,11 @@ namespace Gade_final_Part_1
             int[] dy = { -1, 0, 1, 0 };
 
             //loops through the four directions 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < charVision.Length; i++)
             {
+                Tile tile = charVision[i];
                 int newX = Position.XCoordinate + dx[i];
                 int newY = Position.YCoordinate + dy[i];
-
-                Tile tile = level.CheckTile(newX, newY);
 
                 //checks if the new tile is an empty tile 
                 if (tile is EmptyTile)
@@ -50,6 +51,7 @@ namespace Gade_final_Part_1
             }
             if (emptyTiles.Count == 0)
             {
+                destination = null;
                 return false; // No empty tiles in vision array
             }
 
@@ -69,10 +71,7 @@ namespace Gade_final_Part_1
             //loop that checks adjacent tiles 
             for (int i = 0; i < 4; i++)
             {
-                int newX = Position.XCoordinate + dx[i];
-                int newY = Position.YCoordinate + dy[i];
-
-                Tile tile = level.CheckTile(newX, newY);
+                Tile tile = charVision[i];
 
                 //loop that checks if the tile adjacent is a herotile 
                 if (tile is HeroTile heroTile)
@@ -83,30 +82,6 @@ namespace Gade_final_Part_1
                 }
             }
             return targets.ToArray();
-        }
-        public void SetEnemies(EnemyTile[] enemies) //parameters takes array of enemyTile objects
-        {
-            _enemies = enemies; //it then assigns the input array to the private field
-        }
-
-        public void UpdateVision()
-        {
-            if (_updateVision != null && level != null)
-            {
-                // calls meethod 
-                UpdateVision(level);
-            }
-
-            //loop that checks if _enemies is not null 
-            if (_enemies != null)
-            {
-                //iterates through each enemy
-                foreach (var enemy in _enemies)
-                {
-                    //call method on each enemy
-                    enemy.UpdateVision(level);  // Update vision for each enemy
-                }
-            }
         }
     }
 }

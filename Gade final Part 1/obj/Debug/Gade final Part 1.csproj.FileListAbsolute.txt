@@ -38,10 +38,23 @@ C:\Users\belin\Videos\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Par
 C:\Users\belin\Videos\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
 C:\Users\belin\Videos\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.exe
 C:\Users\belin\Videos\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.exe
-C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (1)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\jetta\Downloads\Part-2-of-the-Grid-Game-main (3)\Part-2-of-the-Grid-Game-main\Gade POE Part 2\Gade final Part 1\obj\Debug\Gade final Part 1.pdb
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\bin\Debug\Gade final Part 1.exe.config
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\bin\Debug\Gade final Part 1.exe
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\bin\Debug\Gade final Part 1.pdb
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.AssemblyReference.cache
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade_final_Part_1.Form1.resources
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade_final_Part_1.Properties.Resources.resources
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.GenerateResource.cache
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade final Part 1.csproj.CoreCompileInputs.cache
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade final Part 1.exe
+C:\Users\jetta\OneDrive\Desktop\Gade final Part 1\obj\Debug\Gade final Part 1.pdb

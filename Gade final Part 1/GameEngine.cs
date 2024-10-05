@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static Gade_final_Part_1.Level;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Gade_final_Part_1
@@ -15,12 +14,15 @@ namespace Gade_final_Part_1
         private Level currentLvl;//Stores the user's Current level
         private int lvlNumbers;//Stores the number of levels the game consists of
         private int totalLvls;
+
+        private HeroTile hero;
+        private Level level;
         private GruntTile gruntTile;
 
         private const int MIN_SIZE = 10;
         private const int MAX_SIZE = 20;
         private Tile[,] _tiles; // Assume this is your grid of tiles
-
+        
         private Random random = new Random();
         private int currentLevelValue = 1;
         private GameState gameState = GameState.InProgress;
@@ -34,10 +36,12 @@ namespace Gade_final_Part_1
             this.lvlNumbers = gameLvls;
             int height = randomValue.Next(MIN_SIZE, MAX_SIZE);
             int width = randomValue.Next(MIN_SIZE, MAX_SIZE);
+            int numEnemies = currentLevelValue;
+            //currentLevelValue = numEnemies;
             //Create an object for the current level field
-            currentLvl = new Level(width, height);
+            currentLvl = new Level(width, height, numEnemies);
             totalLvls = 1;
-            //currentLevelValue = enemySpawns//Set the new number of levels as the number of enemies
+            //currentLevelValue = int numEnemies;//Set the new number of levels as the number of enemies
 
         }
         public override string ToString()
@@ -127,8 +131,7 @@ namespace Gade_final_Part_1
                 heroTile.UpdateVision(currentLvl);
                 return true;
             }
-            gruntTile.UpdateVision();//Call the update method?? from the level class instead of the hero update vision method, making sure the enemy visionarrays also get updated when the hero moves
-
+            
             //Create this if statement to check if 
             if (targetTile is ExitTile)
             {
@@ -143,6 +146,8 @@ namespace Gade_final_Part_1
                     NextLevel();
                 }
             }
+           // gruntTile.UpdateVision();//Call the update method?? from the level class instead of the hero update vision method, making sure the enemy visionarrays also get updated when the hero moves
+
             return false;
         }
         public enum GameState
@@ -163,9 +168,11 @@ namespace Gade_final_Part_1
 
             // Display temporary level and hero tile info
             Console.WriteLine($"Temporary Level: {temporaryLevel}, HeroTile: {heroTile.ToString()}");
-
+            // Increment the number of enemies with each level
+            int numLvlEnemies = lvlNumbers;
+            Console.WriteLine($"the number of enemies are: {numLvlEnemies}");
             // Create a new Level and assign it to currentLvl
-            currentLvl = new Level(newLvlWidth, newLvlHeight, heroTile);
+            currentLvl = new Level(newLvlWidth, newLvlHeight, numLvlEnemies, heroTile, null);
             currentLevelValue++;//Increment the level and the number of enemies
             // Log current object state
             Console.WriteLine(this.ToString());
@@ -173,26 +180,25 @@ namespace Gade_final_Part_1
         public void TriggerMovement(Level.Direction direction)
         {
             int counter = 0;
-            while (counter >= 0)
+
+            if (direction != Level.Direction.None)
             {
-                if (direction != Level.Direction.None)
+                if (MoveHero(direction) && counter == 1)
                 {
-                    if (MoveHero(direction) && counter == 1)
-                    {
-                        return; // Successful movement, exit the method
-                    }
-                    else if (MoveHero(direction) && counter < 1)
-                    {
-                        counter++;
-                    }
-                    Console.WriteLine("Movement failed.");
+                    return; // Successful movement, exit the method
                 }
-                else if (direction == Level.Direction.None)
+                else if (MoveHero(direction) && counter < 1)
                 {
-                    Console.WriteLine("No movement direction provided.");
-                    return;
+                    counter++;
                 }
+                Console.WriteLine("Movement failed.");
             }
+            else if (direction == Level.Direction.None)
+            {
+                Console.WriteLine("No movement direction provided.");
+                return;
+            }
+
         }
         public void MoveEnemies(CharacterTile characterTile, Tile destination, GruntTile gruntTile)
         {
@@ -216,28 +222,42 @@ namespace Gade_final_Part_1
                 gruntTile.UpdateVision(currentLvl);//Checking if the enemy vision are up to date
             }
         }
-        /*public void CheckEnemyStatus(EnemyTile enemy)
-        {
-            if (enemy.IsDead)
-            {
-                Console.WriteLine("Enemy is dead.");
-            }
-            else
-            {
-                Console.WriteLine("Enemy is alive.");
-        }*/
         private bool HeroAttack(Level.Direction direction, CharacterTile characterTile)
         {
+            //Retrieve the direction the hero will be located
+            int heroX = hero.Position.XCoordinate;
+            int heroY = hero.Position.YCoordinate;
+
+            //Assign the directions to the targeted tile position
+            int xTarget = heroX;
+            int yTarget = heroY;
+
+            //Set the switch method to adjust the location of the target
+            switch (direction)
+            {
+                case Level.Direction.Up:
+                    yTarget = -1;//Moving up in the y-axis
+                    break;
+                case Level.Direction.Down:
+                    yTarget = 1;//Moving down in the y-axis
+                    break;
+                case Level.Direction.Left:
+                    xTarget = -1;//Moving left in the x-axis
+                    break;
+                case Level.Direction.Right:
+                    xTarget = 1;//Moving right on the x-axis
+                    break;
+            }
             // Retrieve the target based on the direction provided
-            CharacterTile target = GetTargetInDirection(direction);
+            Tile target = level.CheckTile(xTarget, yTarget);
 
             // Check if the target is valid
-            if (target != null)
+            if (target is CharacterTile characterTile1)
             {
-                characterTile.Attack(target);
+                characterTile.Attack(characterTile1);
                 // If target is found, log the message and return true
                 Console.WriteLine($"Attacked {target.Display}.");
-                return true; // Attack failed
+                return true; // Attack successful
             }
             else
             {
@@ -245,15 +265,12 @@ namespace Gade_final_Part_1
                 Console.WriteLine("No target in that direction.");
                 return false; // Attack was unsuccessful
             }
-        }
-        // Example method to find the target based on direction
-        private CharacterTile GetTargetInDirection(Level.Direction direction)
-        {
+
         }
 
         public void TrigggerAttack(Level.Direction direction)
         {
-            HeroTile heroTile = currentLvl.HeroTile; 
+            HeroTile heroTile = currentLvl.HeroTile;
             bool attackResult = HeroAttack(direction, heroTile);
 
         }

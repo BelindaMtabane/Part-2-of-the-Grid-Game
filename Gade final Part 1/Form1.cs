@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Gade_final_Part_1.Level;
 
 namespace Gade_final_Part_1
 {
@@ -15,7 +14,6 @@ namespace Gade_final_Part_1
     {
         private GameEngine engine;
         private bool isAttackMode = false;
-
 
         public Form1()
         {
@@ -54,12 +52,10 @@ namespace Gade_final_Part_1
             {
                 MoveHero(Level.Direction.Up);
             }
-
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            
             if (isAttackMode)
             {
                 AttackInDirection(Level.Direction.Right);
@@ -122,8 +118,5 @@ namespace Gade_final_Part_1
                 UpdateDisplay();
             }
         }
-
-
-
     }
 }
