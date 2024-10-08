@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblHitpoints = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUp
@@ -128,11 +129,22 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "The Game";
             // 
+            // lblHitpoints
+            // 
+            this.lblHitpoints.AutoSize = true;
+            this.lblHitpoints.Location = new System.Drawing.Point(239, 430);
+            this.lblHitpoints.Name = "lblHitpoints";
+            this.lblHitpoints.Size = new System.Drawing.Size(44, 16);
+            this.lblHitpoints.TabIndex = 8;
+            this.lblHitpoints.Text = "label4";
+            this.lblHitpoints.Click += new System.EventHandler(this.lblHitpoints_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.lblHitpoints);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -160,6 +172,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblHitpoints;
     }
 }
 

@@ -18,13 +18,7 @@ namespace Gade_final_Part_1
         {
 
         }
-        public override char Display
-        {
-            get
-            {
-                return IsDead ? 'X' : 'δ';
-            }
-        }
+        
         public override bool GetMove(out Tile destination)
         {
             //loops through the four directions 
@@ -48,6 +42,8 @@ namespace Gade_final_Part_1
                     //adds a valid tile to the empty tile list
                     emptyTiles.Add(tile);
                 }
+                // Check the adjacent tile
+        
             }
             if (emptyTiles.Count == 0)
             {

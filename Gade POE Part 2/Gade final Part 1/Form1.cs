@@ -31,6 +31,8 @@ namespace Gade_final_Part_1
             btnDown.Click += btnDown_Click;
             btnLeft.Click += btnLeft_Click;
             btnRight.Click += btnRight_Click;
+
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
         public void UpdateDisplay()
         {
@@ -38,6 +40,25 @@ namespace Gade_final_Part_1
             {
                 //Set the label to a string message
                 lblDisplay.Text = engine.ToString();
+                lblHitpoints.Text = engine.HeroStats;
+            }
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    MoveHero(Level.Direction.Up);
+                    break;
+                case Keys.A:
+                    MoveHero(Level.Direction.Left);
+                    break;
+                case Keys.S:
+                    MoveHero(Level.Direction.Down);
+                    break;
+                case Keys.D:
+                    MoveHero(Level.Direction.Right);
+                    break;
             }
         }
 
@@ -88,10 +109,10 @@ namespace Gade_final_Part_1
             {
                 MoveHero(Level.Direction.Down);
             }
-
         }
         private void MoveHero(Level.Direction direction)
         {
+            
             // Ensure engine is not null before calling TriggerMovement()
             if (engine != null)
             {
@@ -121,6 +142,12 @@ namespace Gade_final_Part_1
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblHitpoints_Click(object sender, EventArgs e)
+        {
+            
+            UpdateDisplay();
         }
     }
 }

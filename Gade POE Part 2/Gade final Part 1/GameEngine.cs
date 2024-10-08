@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Gade_final_Part_1
@@ -18,6 +20,8 @@ namespace Gade_final_Part_1
         private HeroTile hero;
         private Level level;
         private GruntTile gruntTile;
+        private CharacterTile characterTile;
+        private Tile destination;
 
         private const int MIN_SIZE = 10;
         private const int MAX_SIZE = 20;
@@ -28,7 +32,6 @@ namespace Gade_final_Part_1
         private GameState gameState = GameState.InProgress;
         //Set a number generator that will return a value between the constants
         private Random randomValue = new Random();
-
         //Set a constructor to set the number of levels the game has
         public GameEngine(int gameLvls)
         {
@@ -37,9 +40,10 @@ namespace Gade_final_Part_1
             int height = randomValue.Next(MIN_SIZE, MAX_SIZE);
             int width = randomValue.Next(MIN_SIZE, MAX_SIZE);
             int numEnemies = currentLevelValue;//Set the new number of levels as the number of enemies
+            int numOfHealths = 1;
 
             //Create an object for the current level field
-            currentLvl = new Level(width, height, numEnemies);
+            currentLvl = new Level(width, height,null, numEnemies, numOfHealths);
             totalLvls = 1;
 
         }
@@ -54,6 +58,10 @@ namespace Gade_final_Part_1
                 //Using a format to all for the value to be a readable string
                 return currentLvl.ToString();
             }
+            else if (gameState == GameState.GameOver)
+            {
+                return "Snake!?...Snaaaaaake!, Game Over Competitor";
+            }
             return base.ToString();//This is a default function that will supress the reference type warning and if the code returns a null, this is due to the gameover function being used later
         }
         private bool MoveHero(Level.Direction direction)
@@ -62,6 +70,7 @@ namespace Gade_final_Part_1
             var heroPosition = heroTile.Position;
             var exitTile = currentLvl.ExitTile;
             var exitPosition = exitTile.Position;
+            var gruntTile = currentLvl.enemyTiles;
 
             // Log current hero position and movement direction
             Console.WriteLine("Your Hero position: X = " + heroPosition.XCoordinate + " Y = " + heroPosition.YCoordinate);
@@ -122,12 +131,18 @@ namespace Gade_final_Part_1
             var targetPosition = new Position(heroPosition.XCoordinate + xOffset, heroPosition.YCoordinate + yOffset);
             var targetTile = currentLvl.CheckTile(targetPosition.XCoordinate, targetPosition.YCoordinate);
 
+            if (targetTile is PickupTile)
+            {
+                ((PickupTile)targetTile).ApplyEffect(hero);
+            }
+
             if (targetTile is EmptyTile)
             {
                 // Swap tiles, update hero position and vision
                 currentLvl.SwopTiles(heroTile, targetTile);
                 heroTile.Position = targetPosition;
-                heroTile.UpdateVision(currentLvl);
+                currentLvl.UpdateVision(currentLvl);
+                //gruntTile.GetMove(heroTile);
                 return true;
             }
             
@@ -144,10 +159,10 @@ namespace Gade_final_Part_1
                     Console.WriteLine($"Level complete!");
                     NextLevel();
                 }
+                return false;
             }
-           // gruntTile.UpdateVision();//Call the update method?? from the level class instead of the hero update vision method, making sure the enemy visionarrays also get updated when the hero moves
-
-            return false;
+            // gruntTile.UpdateVision();//Call the update method?? from the level class instead of the hero update vision method, making sure the enemy visionarrays also get updated when the hero moves
+            return targetTile != null;
         }
         public enum GameState
         {
@@ -172,53 +187,52 @@ namespace Gade_final_Part_1
             int numLvlEnemies = currentLevelValue;
             Console.WriteLine($"the number of enemies are: {numLvlEnemies}");
             // Create a new Level and assign it to currentLvl
-            currentLvl = new Level(newLvlWidth, newLvlHeight, numLvlEnemies, heroTile, null);
+            currentLvl = new Level(newLvlWidth, newLvlHeight, null, numLvlEnemies);
             // Log current object state
             Console.WriteLine(this.ToString());
         }
         public void TriggerMovement(Level.Direction direction)
         {
-            int counter = 0;
-
-            if (direction != Level.Direction.None)
+            if(currentLvl.HeroTile.IsDead)
             {
-                if (MoveHero(direction) && counter == 1)
-                {
-                    return; // Successful movement, exit the method
-                }
-                else if (MoveHero(direction) && counter < 1)
-                {
-                    counter++;
-                }
-                Console.WriteLine("Movement failed.");
-            }
-            else if (direction == Level.Direction.None)
-            {
-                Console.WriteLine("No movement direction provided.");
                 return;
             }
-
+            int counter = 0;
+            bool counterSuccess = MoveHero(direction);
+            if (counterSuccess)
+            {
+                Console.WriteLine("Only one successful move was done");
+                counter++;
+            }
+            if (counterSuccess && counter == 2)
+            {
+                Console.WriteLine("Two successful moves by the enemy was completed");
+                EnemiesAttack();
+                MoveEnemies();
+                counter = 0;
+                return; // Successful movement, exit the method
+            }
         }
-        public void MoveEnemies(CharacterTile characterTile, Tile destination, GruntTile gruntTile)
+        private void MoveEnemies()
         {
-            // Check if the character is dead based on its Display character
-            if (characterTile.IsDead)  // Assuming 'X' means dead
+            foreach(GruntTile gruntTile in this.currentLvl.enemyTiles)
             {
-                Console.WriteLine("The character is dead.");
-            }
-            else if (!gruntTile.GetMove(out destination))
-            {
-                Console.WriteLine("The character has no moves.");
-            }
-            else if (gruntTile.GetMove(out destination))
-            {
-                Console.WriteLine("The character still consists of moves.");
-                //Level level = gruntTile.Level;//the level class needs a reference in the level class 
-                currentLvl.SwopTiles(gruntTile, destination);
-                //This will show the placement of the enemy on the tile
-                Console.WriteLine($"GruntTile moved to tile at position: {destination.XCoordinate}, {destination.YCoordinate}");
-                characterTile.UpdateVision(currentLvl);//Check if the character vision is up to date
-                gruntTile.UpdateVision(currentLvl);//Checking if the enemy vision are up to date
+                // Check if the character is dead based on its Display character
+                if (gruntTile.IsDead)  // Assuming 'X' means dead
+                {
+                    Console.WriteLine("The enemy is dead.");
+                    continue;
+                }
+                if (gruntTile.GetMove(out Tile destination))
+                {
+                    Console.WriteLine("The character still consists of moves.");
+                    //Level level = gruntTile.Level;//the level class needs a reference in the level class 
+                    currentLvl.SwopTiles(gruntTile, destination);
+                    gruntTile.Position = destination.Position;
+                    //This will show the placement of the enemy on the tile
+                    Console.WriteLine($"GruntTile moved to tile at position: {destination.XCoordinate}, {destination.YCoordinate}");
+                    currentLvl.UpdateVision(level);
+                }
             }
         }
         private bool HeroAttack(Level.Direction direction, CharacterTile characterTile)
@@ -235,25 +249,25 @@ namespace Gade_final_Part_1
             switch (direction)
             {
                 case Level.Direction.Up:
-                    yTarget = -1;//Moving up in the y-axis
+                    yTarget -= 1;//Moving up in the y-axis
                     break;
                 case Level.Direction.Down:
-                    yTarget = 1;//Moving down in the y-axis
+                    yTarget += 1;//Moving down in the y-axis
                     break;
                 case Level.Direction.Left:
-                    xTarget = -1;//Moving left in the x-axis
+                    xTarget -= 1;//Moving left in the x-axis
                     break;
                 case Level.Direction.Right:
-                    xTarget = 1;//Moving right on the x-axis
+                    xTarget += 1;//Moving right on the x-axis
                     break;
             }
             // Retrieve the target based on the direction provided
             Tile target = level.CheckTile(xTarget, yTarget);
 
             // Check if the target is valid
-            if (target is CharacterTile characterTile1)
+            if (target is CharacterTile enemyTile && enemyTile is GruntTile)
             {
-                characterTile.Attack(characterTile1);
+                hero.Attack(enemyTile);
                 // If target is found, log the message and return true
                 Console.WriteLine($"Attacked {target.Display}.");
                 return true; // Attack successful
@@ -267,28 +281,47 @@ namespace Gade_final_Part_1
         }
         public void TrigggerAttack(Level.Direction direction)
         {
+            if(currentLvl.HeroTile.IsDead)
+            {
+                return;
+            }
             HeroTile heroTile = currentLvl.HeroTile;
             bool attackResult = HeroAttack(direction, heroTile);
 
             if(attackResult == true)
             {
                 EnemiesAttack();
+                if (heroTile.IsDead)
+                {
+                    gameState = GameState.GameOver;
+                }
             }
         }
         private void EnemiesAttack()
         {
-            foreach(EnemyTile enemyTile in currentLvl.enemyTiles)
+            foreach (var enemy in currentLvl.enemyTiles)
             {
-                if(gruntTile.Display == 'X')
+                if (gruntTile.Display != 'X')
                 {
-                    var targets = gruntTile.IdentifyTargets();
-
-                    foreach (var target in targets)
+                    if (destination == null) // If destination is null, attack
                     {
-                        enemyTile.Attack(target);
+                        CharacterTile[] targets = enemy.IdentifyTargets();
+                        foreach (var target in targets)
+                        {
+                            enemy.Attack(target); // Attack the hero
+                        }
                     }
                 }
             }
+        }
+        public string HeroStats 
+        {
+            get 
+            {
+                HeroTile tile = currentLvl.HeroTile;
+
+                return $"Maximum hitpoints are {tile.HitPoints}/{tile.MaxHitPoints}"; 
+            } 
         }
     }
 }

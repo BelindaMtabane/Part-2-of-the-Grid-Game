@@ -14,7 +14,7 @@ namespace Gade_final_Part_1
         private HeroTile _hero;
         private EnemyTile[] _enemyTiles;
         private Tile _updateVision;
-
+        private PickupTile[] _startupTiles;
 
         //Initialize properties to expose the fields
         public int Width { get; set; }//2D array of type Tile
@@ -23,11 +23,11 @@ namespace Gade_final_Part_1
         public HeroTile HeroTile { get { return _hero; } }//stores hero
         public ExitTile ExitTile { get { return _exit; } }
         public EnemyTile[] enemyTiles { get { return _enemyTiles; } } //exposes the enemyTile array
-
+        public PickupTile[] pickupTiles { get { return _startupTiles; } }
         private Random random = new Random();
         //constructor  which holds integer paramters for height and width
 
-        public Level(int width, int height, int numEnemies, HeroTile hero = null, ExitTile exitTile = null)
+        public Level(int width, int height, HeroTile hero = null, int numEnemies = 1, int numHealthSpawns = 1, ExitTile exitTile = null)
         {
             // Set the width and height of the level
             Width = width;
@@ -81,6 +81,14 @@ namespace Gade_final_Part_1
             {
                 _enemyTiles = new EnemyTile[0];
             }
+
+            for (int i = 0; i < numHealthSpawns; i++)
+            {
+                _startupTiles = new PickupTile[numHealthSpawns];
+                Position healthPosition = GetRandomEmptyPosition();
+                _startupTiles[i] = (HealthPickupTile)CreateTile(TileType.PickUp, healthPosition);
+                _tiles[healthPosition.XCoordinate, healthPosition.YCoordinate] = _startupTiles[i];
+            }
         }
         //sets all the tiles in the 2D Tile array to EmptyTiles using the CreateTiule method.
         public void InitialiseTiles()
@@ -125,8 +133,11 @@ namespace Gade_final_Part_1
                     _tiles[position.XCoordinate, position.YCoordinate] = new HeroTile(position);
                     break;
                 case TileType.Enemy:
-                    return new GruntTile(position);
-
+                    _tiles[position.XCoordinate, position.YCoordinate] = new GruntTile(position);
+                    break;
+                case TileType.PickUp:
+                    _tiles[position.XCoordinate, position.YCoordinate] = new HealthPickupTile(position);
+                    break;
             }
             return _tiles[position.XCoordinate, position.YCoordinate];
         }
@@ -137,7 +148,8 @@ namespace Gade_final_Part_1
             Wall,   // More types will be added here as we extend the Level class according to assignment brief
             Exit,
             Hero,
-            Enemy
+            Enemy,
+            PickUp
         }// single value named Empty
 
         private Tile CreateTile(TileType tileType, int x, int y)

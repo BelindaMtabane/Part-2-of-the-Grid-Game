@@ -13,6 +13,13 @@ namespace Gade_final_Part_1
         {
             
         }
+        public override char Display
+        {
+            get
+            {
+                return IsDead ? 'X' : 'δ';
+            }
+        }
         // Abstract method that determines the move and returns the destination tile via out parameter
         public abstract bool GetMove(out Tile destination);
         // Abstract method that identifies the target tiles

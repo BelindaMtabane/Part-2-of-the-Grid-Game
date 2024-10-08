@@ -53,12 +53,13 @@ namespace Gade_final_Part_1
     {
         //Instatiate the fields
         private int _hitPoints;
-        private readonly int _hitPointsMax;
-        private readonly int _attackPower;
+        private int _hitPointsMax;
+        private int _attackPower;
 
         //Instatiate the Vision Array for the character
         public Tile[] charVision;
-
+        public int HitPoints => _hitPoints; // Public getter
+        public int MaxHitPoints => _hitPointsMax; // Public getter
         //Declare the constructor for the character
         public CharacterTile(Position position, int hitDamage, int attackLevel) : base(position)
         {
@@ -69,7 +70,7 @@ namespace Gade_final_Part_1
             //Declare the array that will open 4 space to store values
             charVision = new Tile[4];
         }
-        public Tile[] UpdateVision(Level level)
+        public void UpdateVision(Level level)
         {
             //2D Array from the level class to represent the template of the game grid
             var tiles = level.Tiles;
@@ -85,8 +86,6 @@ namespace Gade_final_Part_1
 
             if (XCoordinate - 1 >= 0)
                 charVision[3] = tiles[XCoordinate - 1, YCoordinate]; // Tile to the left (index 3) of the character
-
-            return charVision;
         }
         //Method that the character will take damage
         public int TakeDamage(int charDamage)
@@ -108,7 +107,15 @@ namespace Gade_final_Part_1
         {
             target.TakeDamage(_attackPower);
         }
-
         public bool IsDead => _hitPoints <= 0;
+        public void HealingTarget( int storedPoints)
+        {
+            _hitPoints += storedPoints;
+            if (_hitPoints > _hitPointsMax)
+            {
+                _hitPoints = (int)_hitPointsMax;
+                Console.WriteLine("The Character has reached maximum hits");
+            }
+        }
     }
 }
