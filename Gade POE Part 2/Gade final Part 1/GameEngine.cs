@@ -20,6 +20,7 @@ namespace Gade_final_Part_1
         private HeroTile hero;
         private Level level;
         private GruntTile gruntTile;
+        private PickupTile pickupTile;
         private CharacterTile characterTile;
         private Tile destination;
 
@@ -70,8 +71,7 @@ namespace Gade_final_Part_1
             var heroPosition = heroTile.Position;
             var exitTile = currentLvl.ExitTile;
             var exitPosition = exitTile.Position;
-            var gruntTile = currentLvl.enemyTiles;
-
+            
             // Log current hero position and movement direction
             Console.WriteLine("Your Hero position: X = " + heroPosition.XCoordinate + " Y = " + heroPosition.YCoordinate);
             Console.WriteLine("Your Exit position: X = " + exitPosition.XCoordinate + " Y = " + exitPosition.YCoordinate);

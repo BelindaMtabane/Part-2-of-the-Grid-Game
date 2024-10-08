@@ -12,6 +12,7 @@ namespace Gade_final_Part_1
         {
             this.Position = position;
         }
+        Position Position { get; set; }
         public override char Display
         {
             get

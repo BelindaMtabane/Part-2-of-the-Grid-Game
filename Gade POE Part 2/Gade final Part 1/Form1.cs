@@ -149,5 +149,10 @@ namespace Gade_final_Part_1
             
             UpdateDisplay();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

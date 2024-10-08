@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Game Status:
+
+Get into thrilling
+Adventure 
+where you moving
+ a grid map 
+where enemies 
+lurk in random 
+areas.
+
+Use W,A,S,D to 
+move around
+the map or the 
+buttons on the 
+Game template!
+
+Compete and
+be the Winner!
+</value>
+  </data>
 </root>
